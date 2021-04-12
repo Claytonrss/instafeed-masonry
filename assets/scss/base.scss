@@ -1,0 +1,29 @@
+html {
+  font-size: 16px;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+body{  
+  background-image: $blueGradient;
+  font-family: 'Lexend', sans-serif;
+  color: rgba(22,22,22,0.9);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: 0.3s ease-in-out;
+}
+
+img, svg{
+  display: block;
+  max-width: 100%;
+}
