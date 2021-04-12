@@ -7,6 +7,9 @@ import Vue from 'vue'
 import { photos } from '~/store'
 
 export default Vue.extend({
+  beforeMount() {
+    window.addEventListener('DOMContentLoaded', this.afterAllImagesLoaded)
+  },
   async mounted() {
     // verificar se as fotos já estão salvas no localstorage
     const localPhotos = window.localStorage.getItem('instaPhotos')
@@ -23,7 +26,7 @@ export default Vue.extend({
     if (localPhotos || daysDiff) {
       if (localPhotos != null) {
         const jsonPhotos = JSON.parse(localPhotos)
-        await photos.setPhotosLocalStorage(jsonPhotos)
+        photos.setPhotosLocalStorage(jsonPhotos)
       }
     } else {
       await photos.setPhotosAPI()
@@ -36,8 +39,6 @@ export default Vue.extend({
         window.localStorage.setItem('lastUpdatePhotos', now.toString())
       }
     }
-
-    window.addEventListener('DOMContentLoaded', this.afterAllImagesLoaded)
   },
   methods: {
     afterAllImagesLoaded() {
