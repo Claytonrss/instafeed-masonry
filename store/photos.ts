@@ -1,12 +1,13 @@
 import { Action, Module, Mutation, VuexModule } from 'vuex-module-decorators'
 import { $axios } from '@/utils/nuxt-instance'
-import { Photo } from '~/models'
+import { Photo } from '@/models'
 
 @Module({ name: 'photos', stateFactory: true, namespaced: true })
 export default class Photos extends VuexModule {
   private photos: Photo[] = []
   private token =
-    'IGQVJXLXJ6VktwM3A2WnBNenl2aVRud0FRZAzRjd0lZAb0Q1SzdFbnkwUzFCdVlhbXdMU3hURWZAOMExsaG5zbmxmNjU0OXlTNHFOeU5yMG1JaWd1TWRMTmhWTVpsRThETFF3UW4zVmxvLW53a01xcmFiWAZDZD'
+    'IGQVJYMVRRX2I3TGNrSVVUT29henpOSXJHSkk3YUtJOWpGZATV3VnVCZAV9UcGFfdFh5TExxQXNjTEhvMnlNSUZAWblFfaVp5Vk5FS1JaQ0lvS3NUZAkhBVUlsOVBDQkduMl9QNzZAxc2NKYTVwRkVKVnhjNQZDZD'
+  // 'IGQVJXLXJ6VktwM3A2WnBNenl2aVRud0FRZAzRjd0lZAb0Q1SzdFbnkwUzFCdVlhbXdMU3hURWZAOMExsaG5zbmxmNjU0OXlTNHFOeU5yMG1JaWd1TWRMTmhWTVpsRThETFF3UW4zVmxvLW53a01xcmFiWAZDZD'
 
   private baseURL =
     'https://graph.instagram.com/me/media?fields=media_type,media_url,caption&access_token=' +
@@ -73,8 +74,11 @@ export default class Photos extends VuexModule {
 
         countPage++
       } while (hasMore && countPage <= limitPages)
+
+      return true
     } catch (error) {
       console.warn(error)
+      return false
     }
   }
 }
